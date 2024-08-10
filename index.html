@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SST: Seguridad y Salud en el Trabajo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: #50c878;
+            --accent-color: #ff6b6b;
+            --background-color: #f8f9fa;
+            --text-color: #333;
+            --card-bg-color: #ffffff;
+        }
+
+        * * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        line-height: 1.6;
+        color: var(--text-color);
+        background-color: var(--background-color);
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    header {
+        background-color: var(--primary-color);
+        color: white;
+        text-align: center;
+        padding: 2em;
+        border-radius: 0;
+        margin-bottom: 30px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+
+    header:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    header h1 {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+    }
+
+    nav {
+        background-color: var(--card-bg-color);
+        padding: 15px;
+        border-radius: 0;
+        margin-bottom: 30px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+    }
+
+    nav ul {
+        list-style-type: none;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    nav ul li {
+        margin: 5px 10px;
+    }
+
+    nav ul li a {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 600;
+        padding: 8px 15px;
+        border-radius: 20px;
+        transition: all 0.3s ease;
+    }
+
+    nav ul li a:hover,
+    nav ul li a:focus {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+    .content {
+        background-color: var(--card-bg-color);
+        padding: 30px;
+        border-radius: 0;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+
+    .content:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .carousel {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    .carousel-item {
+        display: none;
+        width: 100%;
+        height: auto;
+    }
+
+    .carousel-item.active {
+        display: block;
+    }
+
+    .carousel-item img {
+        width: 100%;
+        height: auto;
+        border-radius: 0;
+    }
+
+    .carousel-caption {
+        position: absolute;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: rgba(0, 0, 0, 0.6);
+        color: white;
+        padding: 10px 20px;
+        border-radius: 20px;
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+
+    .importancia-section {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 30px;
+    }
+
+    .importancia-section .video {
+        flex: 1;
+        max-width: 560px;
+        height: 315px;
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    .importancia-section .video iframe {
+        width: 100%;
+        height: 100%;
+    }
+
+    .importancia-section .content {
+        flex: 1;
+    }
+
+    .article-list,
+    .news-list,
+    .normativas-list,
+    .decretos-list,
+    .leyes-list,
+    .resoluciones-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 30px;
+    }
+
+    .article-card {
+        background-color: var(--card-bg-color);
+        border-radius: 15px;
+        padding: 20px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .article-card:hover {
+        transform: translateY(-5px) scale(1.03);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .article-card h3 {
+        color: var(--primary-color);
+        margin-bottom: 10px;
+    }
+
+    .article-card p {
+        font-size: 0.9em;
+        color: #666;
+    }
+
+    .article-card .read-more {
+        display: inline-block;
+        margin-top: 10px;
+        color: var(--primary-color);
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .article-card .read-more:hover {
+        color: var(--accent-color);
+    }
+
+    #article-search,
+    #search-bar,
+    #normativas-search,
+    #decretos-search,
+    #leyes-search,
+    #resoluciones-search {
+        width: 100%;
+        padding: 15px;
+        margin-bottom: 30px;
+        border-radius: 25px;
+        border: 1px solid #ddd;
+        font-size: 1em;
+        transition: all 0.3s ease;
+    }
+
+    #article-search:focus,
+    #search-bar:focus,
+    #normativas-search:focus,
+    #decretos-search:focus,
+    #leyes-search:focus,
+    #resoluciones-search:focus {
+        outline: none;
+        box-shadow: 0 0 10px rgba(74, 144, 226, 0.3);
+        border-color: var(--primary-color);
+    }
+
+    .cta-button {
+        display: inline-block;
+        background-color: var(--accent-color);
+        color: white;
+        padding: 10px 20px;
+        text-decoration: none;
+        border-radius: 25px;
+        font-weight: bold;
+        margin-top: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+        background-color: #e55a5a;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    footer {
+        text-align: center;
+        margin-top: 50px;
+        padding: 20px;
+        background-color: var(--primary-color);
+        color: white;
+        border-radius: 0;
+        font-size: 0.9em;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .fade-in {
+        animation: fadeIn 0.5s ease-out;
+    }
+
+    .modal {
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+        display: none;
+    }
+
+    .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 600px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .button-group {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .button {
+        display: inline-block;
+        padding: 5px 10px;
+        color: var(--primary-color);
+        font-weight: 600;
+        text-decoration: none;
+        border: 1px solid var(--primary-color);
+        border-radius: 15px;
+        transition: all 0.3s ease;
+    }
+
+    .button:hover {
+        background-color: var(--primary-color);
+        color: white;
+    }
+
+    /* Modo oscuro */
+    body.dark-mode {
+        background-color: #333;
+        color: #f8f9fa;
+    }
+
+    .dark-mode header {
+        background-color: #222;
+    }
+
+    .dark-mode nav {
+        background-color: #444;
+    }
+
+    .dark-mode .content {
+        background-color: #555;
+        color: #f8f9fa;
+    }
+
+    .dark-mode footer {
+        background-color: #222;
+    }
+
+    .dark-mode .article-card {
+        background-color: #444;
+        color: #f8f9fa;
+    }
+
+    .dark-mode .article-card h3 {
+        color: #4a90e2;
+    }
+
+    .dark-mode .article-card p {
+        color: #ddd;
+    }
+
+    .dark-mode .button {
+        color: #4a90e2;
+        border-color: #4a90e2;
+    }
+
+    .dark-mode .button:hover {
+        background-color: #4a90e2;
+        color: #333;
+    }
+
+    .dark-mode #normativas-search,
+    .dark-mode #decretos-search,
+    .dark-mode #leyes-search,
+    .dark-mode #resoluciones-search {
+        background-color: #444;
+        color: #f8f9fa;
+        border-color: #666;
+    }
+
+    .dark-mode .modal-content {
+        background-color: #444;
+        color: #f8f9fa;
+    }
+
+    .dark-mode .close {
+        color: #f8f9fa;
+    }
+
+    #ai-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            transition: transform 0.3s ease;
+        }
+
+        #ai-button:hover {
+            transform: scale(1.1);
+        }
+
+        #chat-container {
+            display: none;
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        #chat-header {
+            background-color: red;
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #chat-close {
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        #chat-messages {
+            height: 310px;
+            overflow-y: auto;
+            padding: 10px;
+            background-color: #f5f5f5;
+        }
+
+        .chat-message {
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 8px;
+            max-width: 80%;
+        }
+
+        .user-message {
+            background-color: #e1f5fe;
+            margin-left: auto;
+        }
+
+        .ai-message {
+            background-color: #fff;
+            margin-right: auto;
+        }
+
+        #chat-input-container {
+            display: flex;
+            padding: 10px;
+            background-color: white;
+        }
+
+        #chat-input {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        #chat-send {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            margin-left: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #logo {
+            font-size: 48px;
+            color: white;
+            margin-bottom: 10px;
+        }
+
+
+
+
+    </style>
+</head>
+<body>
+
+    
+
+    <div class="container">
+        <header class="pulse">
+            <div id="logo">
+                <i class="fas fa-hard-hat"></i>
+            </div>
+            <h1>SST: Seguridad y Salud en el Trabajo</h1>
+            <p id="header-text">Protegiendo el bienestar de los trabajadores</p>
+            <button id="dark-mode-toggle" class="cta-button">Modo Oscuro</button>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showSection('inicio')"><i class="fas fa-home"></i> Inicio</a></li>
+                <li><a href="#" onclick="showSection('importancia')"><i class="fas fa-exclamation-circle"></i> Importancia</a></li>
+                <li><a href="#" onclick="showSection('normativas')"><i class="fas fa-book"></i> Normativas</a></li>
+                <li><a href="#" onclick="showSection('decretos')"><i class="fas fa-file-alt"></i> Decretos</a></li>
+                <li><a href="#" onclick="showSection('leyes')"><i class="fas fa-balance-scale"></i> Leyes</a></li>
+                <li><a href="#" onclick="showSection('resoluciones')"><i class="fas fa-file-signature"></i> Resoluciones</a></li>
+            </ul>
+        </nav>
+       <div id="inicio" class="content fade-in">
+    <div class="carousel">
+        <div class="carousel-item active">
+            <img src="imagen/range1.jpeg" alt="Seguridad en el Trabajo">
+            <div class="carousel-caption">La Seguridad es Prioritaria</div>
+        </div>
+        <div class="carousel-item">
+            <img src="imagen/range2.jpeg" alt="Equipos de Protección Personal">
+            <div class="carousel-caption">Equipos de Protección Personal</div>
+        </div>
+        <div class="carousel-item">
+            <img src="imagen/range3.jpeg" alt="Capacitación en SST">
+            <div class="carousel-caption">Capacitación en SST</div>
+        </div>
+    </div>
+    <div class="content-text">
+        <h2>Bienvenido a SST: Seguridad y Salud en el Trabajo</h2>
+        <p>En esta plataforma encontrarás información valiosa sobre las normativas, leyes y resoluciones que rigen la seguridad y salud de los trabajadores en Colombia. Nuestro objetivo es brindar herramientas y recursos para que las empresas puedan implementar prácticas efectivas y garantizar un ambiente de trabajo seguro y saludable.</p>
+        <p>Explora las diferentes secciones y mantente actualizado sobre los últimos desarrollos en esta área. Juntos, podemos construir una cultura de prevención y bienestar laboral.</p>
+        <a href="#" class="cta-button">Más Información</a>
+    </div>
+</div>
+        </div>
+        <div id="importancia" class="content fade-in" style="display: none;">
+            <h2>Importancia de la SST</h2>
+            <div class="importancia-section">
+                <div class="video">
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/vHTVYNen3jU?si=jUKBOjw2oxqcoNJo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <div class="content">
+                    
+                   
+                        
+                        
+                        <li>La protección de la vida y la salud de los trabajadores es fundamental, implicando medidas de seguridad y un ambiente que promueva su bienestar.</li>
+                        <li>Mejorar la productividad y la calidad del trabajo es esencial para la competitividad, empoderando a los empleados mediante capacitación y un ambiente motivador.</li>
+                        <li>Reducir los costos asociados a accidentes y enfermedades laborales es clave para la sostenibilidad financiera, minimizando riesgos y gastos médicos.</li>
+                        <li>Cumplir con las normativas legales es crucial para evitar sanciones y mantener la operatividad de la empresa.</li>
+                        <li>La protección y bienestar de los empleados contribuyen a mejorar la imagen y reputación de la empresa.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div id="normativas" class="content fade-in" style="display: none;">
+
+            <h2>Normativas</h2>
+
+            <input type="text" id="normativas-search" placeholder="Buscar normativas..." onkeyup="filterNormativas()">
+
+            <div class="normativas-list">
+
+                <div class="article-card">
+
+                    <h3>Normativa 1: Resolución 0312 de 2019</h3>
+
+                    <p>La Resolución 0312 de 2019 establece los lineamientos sobre el Sistema de Gestión de Seguridad y Salud en el Trabajo.</p>
+
+                    <div class="button-group">
+
+                        <a href="#" class="button" onclick="showDetails('normativa1')">Leer más</a>
+
+                        <a href="#" class="button" onclick="showStudentExplanation('normativa1')">Estudiante</a>
+
+                    </div>
+
+                </div>
+
+                <div class="article-card">
+
+                    <h3>Normativa 2: Ley 1562 de 2012</h3>
+
+                    <p>La Ley 1562 de 2012 modifica el Sistema General de Riesgos Laborales en Colombia.</p>
+
+                    <div class="button-group">
+
+                        <a href="#" class="button" onclick="showDetails('normativa2')">Leer más</a>
+
+                        <a href="#" class="button" onclick="showStudentExplanation('normativa2')">Estudiante</a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="decretos" class="content fade-in" style="display: none;">
+
+            <h2>Decretos</h2>
+
+            <input type="text" id="decretos-search" placeholder="Buscar decretos..." onkeyup="filterDecretos()">
+
+            <div class="decretos-list">
+
+                <div class="article-card">
+
+                    <h3>Decreto 1072 de 2015</h3>
+
+                    <p>Este decreto compila las disposiciones sobre SST y establece el Sistema de Gestión de Seguridad y Salud en el Trabajo.</p>
+
+                    <div class="button-group">
+
+                        <a href="#" class="button" onclick="showDetails('decreto1')">Leer más</a>
+
+                        <a href="#" class="button" onclick="showStudentExplanation('decreto1')">Estudiante</a>
+
+                    </div>
+
+                </div>
+
+                <div class="article-card">
+
+                    <h3>Decreto 1443 de 2014</h3>
+
+                    <p>El Decreto 1443 de 2014 establece el procedimiento para el reconocimiento y control de los riesgos laborales.</p>
+
+                    <div class="button-group">
+
+                        <a href="#" class="button" onclick="showDetails('decreto2')">Leer más</a>
+
+                        <a href="#" class="button" onclick="showStudentExplanation('decreto2')">Estudiante</a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="leyes" class="content fade-in" style="display: none;">
+
+            <h2>Leyes</h2>
+
+            <input type="text" id="leyes-search" placeholder="Buscar leyes..." onkeyup="filterLeyes()">
+
+            <div class="leyes-list">
+
+                <div class="article-card">
+
+                    <h3>Ley 100 de 1993</h3>
+
+                    <p>Esta ley establece el Sistema de Seguridad Social Integral en Colombia.</p>
+
+                    <div class="button-group">
+
+                        <a href="#" class="button" onclick="showDetails('ley1')">Leer más</a>
+
+                        <a href="#" class="button" onclick="showStudentExplanation('ley1')">Estudiante</a>
+
+                    </div>
+
+                </div>
+
+                <div class="article-card">
+
+                    <h3>Ley 1610 de 2013</h3>
+
+                    <p>La Ley 1610 de 2013 regula el control y seguimiento a las condiciones de seguridad en el trabajo.</p>
+
+                    <div class="button-group">
+
+                        <a href="#" class="button" onclick="showDetails('ley2')">Leer más</a>
+
+                        <a href="#" class="button" onclick="showStudentExplanation('ley2')">Estudiante</a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="resoluciones" class="content fade-in" style="display: none;">
+
+            <h2>Resoluciones</h2>
+
+            <input type="text" id="resoluciones-search" placeholder="Buscar resoluciones..." onkeyup="filterResoluciones()">
+
+            <div class="resoluciones-list">
+
+                <div class="article-card">
+
+                    <h3>Resolución 0130 de 2008</h3>
+
+                    <p>Esta resolución establece los lineamientos para la implementación de programas de salud ocupacional.</p>
+
+                    <div class="button-group">
+
+                        <a href="#" class="button" onclick="showDetails('resolucion1')">Leer más</a>
+
+                        <a href="#" class="button" onclick="showStudentExplanation('resolucion1')">Estudiante</a>
+
+                    </div>
+
+                </div>
+
+                <div class="article-card">
+
+                    <h3>Resolución 0312 de 2019</h3>
+
+                    <p>La Resolución 0312 de 2019 establece los requisitos mínimos para el Sistema de Gestión de SST.</p>
+
+                    <div class="button-group">
+
+                        <a href="#" class="button" onclick="showDetails('resolucion2')">Leer más</a>
+
+                        <a href="#" class="button" onclick="showStudentExplanation('resolucion2')">Estudiante</a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <footer>
+
+            <p>&copy; 2024 Seguridad y Salud en el Trabajo. Todos los derechos reservados.</p>
+
+        </footer>
+
+        <button id="ai-button" onclick="toggleChat()">
+            <i class="fas fa-hard-hat"></i>
+        </button>
+    
+        <div id="chat-container">
+            <div id="chat-header">
+                <span>Asistente SST</span>
+                <span id="chat-close" onclick="toggleChat()">&times;</span>
+            </div>
+            <div id="chat-messages"></div>
+            <div id="chat-input-container">
+                <input type="text" id="chat-input" placeholder="Escribe tu mensaje...">
+                <button id="chat-send" onclick="sendMessage()">Enviar</button>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+
+        function showSection(section) {
+
+            const sections = ['inicio', 'importancia', 'normativas', 'decretos', 'leyes', 'resoluciones'];
+
+            sections.forEach(sec => {
+
+                document.getElementById(sec).style.display = sec === section ? 'block' : 'none';
+
+            });
+
+        }
+
+        function filterNormativas() {
+
+            filterSection('normativas-search', '.normativas-list .article-card');
+
+        }
+
+        function filterDecretos() {
+
+            filterSection('decretos-search', '.decretos-list .article-card');
+
+        }
+
+        function filterLeyes() {
+
+            filterSection('leyes-search', '.leyes-list .article-card');
+
+        }
+
+        function filterResoluciones() {
+
+            filterSection('resoluciones-search', '.resoluciones-list .article-card');
+
+        }
+
+        function filterSection(inputId, cardSelector) {
+
+            const searchTerm = document.getElementById(inputId).value.toLowerCase();
+
+            const cards = document.querySelectorAll(cardSelector);
+
+            cards.forEach(card => {
+
+                const text = card.textContent.toLowerCase();
+
+                card.style.display = text.includes(searchTerm) ? 'block' : 'none';
+
+            });
+
+        }
+
+        function showDetails(type) {
+
+            const modals = {
+
+                'normativa1': "Normativa 1: Resolución 0312 de 2019: La Resolución 0312 de 2019 establece los lineamientos sobre el Sistema de Gestión de Seguridad y Salud en el Trabajo. Proporciona un marco de referencia para la implementación de políticas y prácticas efectivas en las organizaciones.",
+
+                'normativa2': "Normativa 2: Ley 1562 de 2012: La Ley 1562 de 2012 modifica el Sistema General de Riesgos Laborales en Colombia, mejorando las condiciones de trabajo y promoviendo la prevención de accidentes y enfermedades laborales.",
+
+                'decreto1': "Decreto 1072 de 2015: Este decreto compila las disposiciones sobre SST y establece el Sistema de Gestión de Seguridad y Salud en el Trabajo, buscando proteger la salud y la seguridad de los trabajadores en el país.",
+
+                'decreto2': "Decreto 1443 de 2014: El Decreto 1443 de 2014 establece el procedimiento para el reconocimiento y control de los riesgos laborales, asegurando una gestión adecuada de los mismos.",
+
+                'ley1': "Ley 100 de 1993: Esta ley establece el Sistema de Seguridad Social Integral en Colombia, garantizando el acceso a servicios de salud y protección a los trabajadores.",
+
+                'ley2': "Ley 1610 de 2013: La Ley 1610 de 2013 regula el control y seguimiento a las condiciones de seguridad en el trabajo, promoviendo la protección de los derechos laborales.",
+
+                'resolucion1': "Resolución 0130 de 2008: Esta resolución establece los lineamientos para la implementación de programas de salud ocupacional, fomentando el bienestar de los trabajadores.",
+
+                'resolucion2': "Resolución 0312 de 2019: La Resolución 0312 de 2019 establece los requisitos mínimos para el Sistema de Gestión de SST. Busca garantizar un ambiente laboral seguro y saludable para todos los trabajadores."
+
+            };
+
+            showModal(modals[type]);
+
+        }
+
+        function showStudentExplanation(type) {
+
+            const explanations = {
+
+                'normativa1': "La Resolución 0312 de 2019 es como un manual que explica cómo cuidar la salud y seguridad de las personas en el trabajo. Dice qué cosas deben hacer las empresas para proteger a sus trabajadores, dependiendo de cuántos empleados tengan y qué tipo de trabajo hacen.",
+
+                'normativa2': "La Ley 1562 de 2012 es como un gran cambio en las reglas para cuidar a los trabajadores. Hace que sea más fácil proteger a las personas si se lastiman en el trabajo y ayuda a prevenir accidentes antes de que ocurran.",
+
+                'decreto1': "El Decreto 1072 de 2015 es como un gran libro de reglas que junta todas las leyes sobre la seguridad en el trabajo. Explica cómo las empresas deben cuidar a sus trabajadores y qué hacer para evitar accidentes.",
+
+                'decreto2': "El Decreto 1443 de 2014 es como una guía que explica paso a paso cómo identificar y controlar los peligros en el trabajo. Ayuda a las empresas a crear un plan para mantener seguros a sus trabajadores.",
+
+                'ley1': "La Ley 100 de 1993 es como un gran plan para cuidar la salud de todos en Colombia. Asegura que los trabajadores tengan acceso a médicos y hospitales cuando los necesiten.",
+
+                'ley2': "La Ley 1610 de 2013 es como tener inspectores que revisan que las empresas estén cuidando bien a sus trabajadores. Ayuda a asegurarse de que todos sigan las reglas de seguridad.",
+
+                'resolucion1': "La Resolución 0130 de 2008 es como una guía para crear programas que cuiden la salud de los trabajadores. Explica qué cosas deben hacer las empresas para que sus empleados estén sanos y felices en el trabajo.",
+
+                'resolucion2': "La Resolución 0312 de 2019 es como una lista de cosas mínimas que todas las empresas deben hacer para cuidar a sus trabajadores. Ayuda a que incluso las empresas pequeñas puedan proteger bien a sus empleados."
+
+            };
+
+            showModal(explanations[type]);
+
+        }
+
+        function showModal(content) {
+
+            const modal = document.createElement('div');
+
+            modal.classList.add('modal');
+
+            modal.innerHTML = `
+
+                <div class="modal-content">
+
+                    <span class="close" onclick="this.parentElement.parentElement.style.display='none'">&times;</span>
+
+                    <p>${content}</p>
+
+                </div>
+
+            `;
+
+            document.body.appendChild(modal);
+
+            modal.style.display = 'block';
+
+            window.onclick = function(event) {
+
+                if (event.target === modal) {
+
+                    modal.style.display = 'none';
+
+                }
+
+            };
+
+        }
+
+        document.getElementById('dark-mode-toggle').addEventListener('click', function() {
+
+            document.body.classList.toggle('dark-mode');
+
+            const isDarkMode = document.body.classList.contains('dark-mode');
+
+            this.textContent = isDarkMode ? 'Modo Claro' : 'Modo Oscuro';
+
+            updateHeaderText();
+
+        });
+
+        function updateHeaderText() {
+
+            const headerText = document.getElementById('header-text');
+
+            const isDarkMode = document.body.classList.contains('dark-mode');
+
+            headerText.textContent = isDarkMode ? 'Cuidando de los trabajadores' : 'Protegiendo el bienestar de los trabajadores';
+
+        }
+
+        const carouselItems = document.querySelectorAll('.carousel-item');
+
+        let currentIndex = 0;
+
+        function showNextCarouselItem() {
+
+            carouselItems[currentIndex].classList.remove('active');
+
+            currentIndex = (currentIndex + 1) % carouselItems.length;
+
+            carouselItems[currentIndex].classList.add('active');
+
+        }
+
+        setInterval(showNextCarouselItem, 3000);
+
+        updateHeaderText();
+        function toggleChat() {
+    const chatContainer = document.getElementById('chat-container');
+    chatContainer.style.display = chatContainer.style.display === 'none' ? 'block' : 'none';
+}
+
+// Respuestas predefinidas
+const responses = {
+    "qué es sst": "La Seguridad y Salud en el Trabajo (SST) se refiere a las condiciones y factores que afectan la seguridad y la salud de los trabajadores.",
+    "cuáles son mis derechos como trabajador": "Tienes derecho a un ambiente laboral seguro y saludable, así como a recibir capacitación adecuada sobre los riesgos en el trabajo.",
+    "qué debo hacer en caso de un accidente laboral": "Debes reportar el accidente a tu supervisor y buscar atención médica si es necesario. También es importante documentar el incidente.",
+    "qué es un riesgo laboral": "Un riesgo laboral es cualquier situación o condición en el lugar de trabajo que pueda causar daño o lesión a los trabajadores.",
+    "qué es un accidente de trabajo": "Un accidente de trabajo es un suceso que ocurre en el lugar de trabajo y que causa una lesión o enfermedad al trabajador.",
+    "cómo prevenir accidentes laborales": "Puedes prevenir accidentes laborales mediante la identificación de riesgos, capacitación adecuada y el uso de equipos de protección personal.",
+    "qué es un plan de emergencia": "Un plan de emergencia es un conjunto de procedimientos que se establecen para actuar en caso de situaciones de emergencia en el trabajo.",
+    "quién es responsable de la seguridad laboral": "La responsabilidad de la seguridad laboral recae en el empleador, pero también es importante que los trabajadores participen activamente en la promoción de un ambiente seguro.",
+    // Agrega más preguntas y respuestas aquí
+};
+
+// Función principal para enviar mensajes
+function sendMessage() {
+    const input = document.getElementById('chat-input');
+    const message = input.value.trim();
+    if (message) {
+        input.value = '';
+        addChatMessage('Usuario', message, 'user-message');
+        
+        // Lógica para procesar el mensaje y generar una respuesta
+        const response = getResponse(message);
+        setTimeout(() => {
+            addChatMessage('IA', response, 'ai-message');
+        }, 1000);
+    }
+}
+
+// Función para obtener una respuesta
+function getResponse(message) {
+    const normalizedMessage = message.toLowerCase().replace(/[¿?]/g, '').trim();
+
+    // Verifica si hay una respuesta exacta
+    if (responses[normalizedMessage]) {
+        return responses[normalizedMessage];
+    }
+
+    // Lógica para búsqueda de palabras clave
+    const keywords = Object.keys(responses);
+    const foundKeywords = keywords.filter(keyword => normalizedMessage.includes(keyword));
+    
+    // Si se encuentran palabras clave, devuelve la primera respuesta relacionada
+    if (foundKeywords.length > 0) {
+        return responses[foundKeywords[0]];
+    }
+
+    return "Lo siento, no tengo una respuesta para esa pregunta. ¿Puedes reformularla?";
+}
+
+// Función para agregar mensajes al chat
+function addChatMessage(sender, message, className) {
+    const chatMessages = document.getElementById('chat-messages');
+    const messageElement = document.createElement('div');
+    messageElement.className = `chat-message ${className}`;
+    messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+    chatMessages.appendChild(messageElement);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Evento para enviar mensaje al presionar 'Enter'
+document.getElementById('chat-input').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        sendMessage();
+    }
+});
+
+</script>
+
+</body>
+
+</html>
